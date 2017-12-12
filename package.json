@@ -1,0 +1,47 @@
+{
+  "name": "react-basic-state",
+  "version": "0.0.1",
+  "description": "Simple and easy state management for React",
+  "main": "lib/cjs.js",
+  "module": "lib/es.js",
+  "scripts": {
+    "transpile": "babel src --out-dir temp",
+    "build:cjs": "rollup temp/index.js --output.format cjs --output.file lib/cjs.js --external react,react-broadcast,event-emitter",
+    "build:es": "rollup temp/index.js --output.format es --output.file lib/es.js --external react,react-broadcast,event-emitter",
+    "build": "npm run transpile && npm run build:cjs && npm run build:es"
+  },
+  "author": "Andrew Tevington <andrew.tevington@gmail.com> (https://github.com/atevington)",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/atevington/react-basic-state.git"
+  },
+  "bugs": {
+    "url": "https://github.com/atevington/react-basic-state/issues"
+  },
+  "homepage": "https://github.com/atevington/react-basic-state",
+  "keywords": [
+    "react",
+    "state",
+    "publish",
+    "subscribe"
+  ],
+  "files": [
+    "lib"
+  ],
+  "devDependencies": {
+    "babel-cli": "^6.26.0",
+    "babel-core": "^6.26.0",
+    "babel-preset-env": "^1.6.1",
+    "babel-preset-react": "^6.24.1",
+    "babel-preset-stage-0": "^6.24.1",
+    "rollup": "^0.52.1"
+  },
+  "dependencies": {
+    "event-emitter": "^0.3.5",
+    "react-broadcast": "^0.6.0"
+  },
+  "peerDependencies": {
+    "react": ">=16"
+  }
+}
