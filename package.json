@@ -1,6 +1,6 @@
 {
   "name": "react-basic-state",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "description": "Simple and easy state management for React",
   "main": "lib/cjs.js",
   "module": "lib/es.js",
