@@ -1,6 +1,6 @@
 # React Basic State
 
-Simple and easy state management for React.
+Simple and easy state management for React. See a demo [here](https://www.webpackbin.com/bins/-L088tSDNRxgmAQod3Kh).
 
 ## Usage
 
