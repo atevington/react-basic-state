@@ -6,16 +6,21 @@ const emitter = EventEmitter({})
 
 const StateProvider = initialState => {
 	const id = new Date().getTime()
-	const channel = `external-state-update-${id}`
 
-	const publish = emitter.emit.bind(emitter, channel)
-	const subscribe = emitter.on.bind(emitter, channel)
-	const unsubscribe = emitter.off.bind(emitter, channel)
+	const channelInternal = `internal-state-update-${id}`
+	const publishInternal = emitter.emit.bind(emitter, channelInternal)
+	const subscribeInternal = emitter.on.bind(emitter, channelInternal)
+	const unsubscribeInternal = emitter.off.bind(emitter, channelInternal)
+
+	const channelExternal = `external-state-update-${id}`
+	const publishExternal = emitter.emit.bind(emitter, channelExternal)
+	const subscribeExternal = emitter.on.bind(emitter, channelExternal)
+	const unsubscribeExternal = emitter.off.bind(emitter, channelExternal)
 
 	return {
-		container: StateContainer(id, initialState, subscribe, unsubscribe),
-		wrap: StateWrapper(id),
-		update: publish
+		container: StateContainer(id, initialState, subscribeInternal, unsubscribeInternal, subscribeExternal, unsubscribeExternal),
+		wrap: StateWrapper(id, publishInternal),
+		update: publishExternal
 	}
 }
 

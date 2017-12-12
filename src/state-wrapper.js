@@ -1,12 +1,12 @@
 import React from "react"
 import {Subscriber} from "react-broadcast"
 
-const StateWrapper = id => (Wrapped, stateToProps, actionsToProps) => class extends React.Component {
+const StateWrapper = (id, publishInternal) => (Wrapped, stateToProps, actionsToProps) => class extends React.Component {
 	constructor(props) {
 		super(props)
 	}
 
-	mapParamsToProps(state, setState) {
+	mapParamsToProps(state) {
 		const mappedProps = {}
 
 		if (stateToProps) {
@@ -16,7 +16,7 @@ const StateWrapper = id => (Wrapped, stateToProps, actionsToProps) => class exte
 
 		if (actionsToProps) {
 			Object.keys(actionsToProps)
-				.map(key => mappedProps[key] = (...args) => setState(actionsToProps[key](state)(...args)))
+				.map(key => mappedProps[key] = (...args) => publishInternal(actionsToProps[key](state)(...args)))
 		}
 
 		return mappedProps
@@ -24,16 +24,8 @@ const StateWrapper = id => (Wrapped, stateToProps, actionsToProps) => class exte
 
 	render() {
 		return (
-			<Subscriber channel={`state-set-${id}`}>
-				{
-					setState =>
-					<Subscriber channel={`state-update-${id}`}>
-						{
-							state =>
-							<Wrapped {...this.props} {...this.mapParamsToProps(state, setState)} />
-						}
-					</Subscriber>
-				}
+			<Subscriber channel={`state-update-${id}`}>
+				{state => <Wrapped {...this.props} {...this.mapParamsToProps(state)} />}
 			</Subscriber>
 		)
 	}
