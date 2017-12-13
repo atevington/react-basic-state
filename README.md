@@ -50,6 +50,7 @@ const Incrementer = AppState.wrap(ClickMe, null, {onClick: incrementCounter})
 ```
 
 Bring it all together:
+
 ```javascript
 ReactDOM.render(
 	<StateContainer>
