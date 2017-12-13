@@ -1,7 +1,11 @@
 import React from "react"
 import {Subscriber} from "react-broadcast"
 
-const StateWrapper = (id, publishInternal) => (Wrapped, stateToProps, actionsToProps) => class extends React.Component {
+const StateWrapper = (id, publishInternal) => (
+	Wrapped,
+	stateToProps,
+	actionsToProps
+) => class extends React.Component {
 	constructor(props) {
 		super(props)
 	}

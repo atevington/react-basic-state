@@ -35,6 +35,10 @@ const StateContainer = AppState.container
 Wrap some stateless components:
 
 ```javascript
+
+// AppState.Wrap is analogous to connect in Redux
+// AppState.Wrap(componentToBeWrapped, stateToProps, actionsToProps)
+
 // Inject state into a component's props
 const DisplayText = props => props.text
 const DisplayCounter = AppState.wrap(DisplayText, {text: state => state.count})
@@ -61,7 +65,7 @@ ReactDOM.render(
 
 Under the hood, this is just calling `setState` on your `StateContainer` component, and notifying children of updates through [react-broadcast](https://github.com/ReactTraining/react-broadcast). The normal rules about updating `state` apply: don't mutate it directly and treat it as immutable.
 
-It's also possible to update state outside the context of a component. After your  `StateContainer` component has mounted, you can call `AppState.update`:
+It's also possible to update state outside the context of a component. After your `StateContainer` component has mounted, you can call `AppState.update`:
 
 ```javascript
 const resetCounter = state => ({count: 0})

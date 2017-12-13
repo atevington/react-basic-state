@@ -18,7 +18,14 @@ const StateProvider = initialState => {
 	const unsubscribeExternal = emitter.off.bind(emitter, channelExternal)
 
 	return {
-		container: StateContainer(id, initialState, subscribeInternal, unsubscribeInternal, subscribeExternal, unsubscribeExternal),
+		container: StateContainer(
+			id,
+			initialState,
+			subscribeInternal,
+			unsubscribeInternal,
+			subscribeExternal,
+			unsubscribeExternal
+		),
 		wrap: StateWrapper(id, publishInternal),
 		update: publishExternal
 	}

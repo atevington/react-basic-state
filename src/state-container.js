@@ -2,7 +2,14 @@ import React from "react"
 import {Broadcast} from "react-broadcast"
 const DumbComponent = props => props.children
 
-const StateContainer = (id, initialState, subscribeInternal, unsubscribeInternal, subscribeExternal, unsubscribeExternal) => class extends React.Component {
+const StateContainer = (
+	id,
+	initialState,
+	subscribeInternal,
+	unsubscribeInternal,
+	subscribeExternal,
+	unsubscribeExternal
+) => class extends React.Component {
 	constructor(props) {
 		super(props)
 
