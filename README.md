@@ -35,9 +35,8 @@ const StateContainer = AppState.container
 Wrap some stateless components:
 
 ```javascript
-
-// AppState.Wrap is analogous to connect in Redux
-// AppState.Wrap(componentToBeWrapped, stateToProps, actionsToProps)
+// AppState.wrap is analogous to connect in Redux
+// AppState.wrap(componentToBeWrapped, stateToProps, actionsToProps)
 
 // Inject state into a component's props
 const DisplayText = props => props.text
